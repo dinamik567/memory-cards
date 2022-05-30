@@ -1,4 +1,50 @@
-h1 {
-	color: green;
-	font-size: 60px;
+body {
+	height: 100vh;
+	width: 100%;
+}
+
+.container {
+	height: 100vh;
+	max-width: 850px;
+	margin: 0 auto;
+}
+
+.memory-cards {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	text-align: center;
+
+}
+
+.memory-card {
+	width: 100%;
+	max-width: 25%;
+	height: 150px;
+	border-radius: 12%;
+	border: 1px solid white;
+	background-color: #403e3e;
+}
+
+.memory-card:hover {
+	transform: translate(-5%, -5%);
+	transition: 0.3s;
+}
+
+.frond-card {
+	position: relative;
+	height: 100%;
+}
+
+.frond-card__img {
+	position: absolute;
+	width: 50%;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.back-card {
+	display: hidden;
 }

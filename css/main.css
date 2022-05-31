@@ -1,6 +1,90 @@
 body {
 	height: 100vh;
 	width: 100%;
+	background-image: url(../image/jpg/waterfall-background.jpg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: white;
+}
+
+.control {
+	padding: 0 15px;
+	margin: 50px auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.control-form {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.control-form__radio-input {
+	position: absolute;
+	top: 0;
+	display: none;
+}
+
+.control-form__button {
+	padding: 0 10px;
+	height: 44px;
+	border-radius: 5%;
+	border: none;
+	cursor: pointer;
+	background-color: #525151;
+	color: white;
+	font-size: 18px;
+	font-weight: 500;
+	border: 2px solid #525151;
+}
+
+.control-form__button:hover {
+	color: #EFCE20;
+	transition: 0.4s linear;
+	border: 2px solid #EFCE20;
+}
+
+.control-form__box {
+	position: relative;
+	padding: 10px 10px;
+	margin: 0 5px;
+	cursor: pointer;
+	display: block;
+	line-height: 1.5;
+	width: 150px;
+	border-radius: 5%;
+	background-color: #77cd1aba;
+}
+
+.control-form__box_sixteen::after {
+	content: " ";
+	width: 34px;
+	height: 34px;
+	background-image: url(../image/svg/control/sixteen.svg);
+}
+
+.control-form__box_twenty::after {
+	content: " ";
+	width: 43px;
+	height: 34px;
+	background-image: url(../image/svg/control/twenty.svg);
+}
+
+.control-form__box_twenty-four::after {
+	content: " ";
+	width: 52px;
+	height: 34px;
+	background-image: url(../image/svg/control/twenty-four.svg);
+}
+
+.control-form__box_sixteen::after, .control-form__box_twenty::after, .control-form__box_twenty-four::after{
+	position: absolute;
+	top: 50%;
+	right: 6px;
+	transform: translateY(-50%);
 }
 
 .container {
@@ -42,6 +126,10 @@ body {
 	transition: 0.5s linear;
 }
 
+.closed {
+	visibility: hidden;
+}
+
 .frond-card, .back-card {
 	backface-visibility: hidden;
 	border-radius: 12%;
@@ -79,3 +167,4 @@ body {
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
+

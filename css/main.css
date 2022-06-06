@@ -59,6 +59,23 @@ body {
 	background-color: #77cd1aba;
 }
 
+.control-form__box:hover{
+	background-color: #EFCE20;
+	transition: 0.4s linear;
+}
+
+.control-form__box_active {
+	background-color: #EFCE20;
+	transition: 0.4s linear;
+}
+
+.control-form__box_twelve::after {
+	content: " ";
+	width: 34px;
+	height: 25px;
+	background-image: url(../image/svg/control/twelve.svg);
+}
+
 .control-form__box_sixteen::after {
 	content: " ";
 	width: 34px;
@@ -73,14 +90,9 @@ body {
 	background-image: url(../image/svg/control/twenty.svg);
 }
 
-.control-form__box_twenty-four::after {
-	content: " ";
-	width: 52px;
-	height: 34px;
-	background-image: url(../image/svg/control/twenty-four.svg);
-}
 
-.control-form__box_sixteen::after, .control-form__box_twenty::after, .control-form__box_twenty-four::after{
+
+.control-form__box_sixteen::after, .control-form__box_twenty::after, .control-form__box_twelve::after{
 	position: absolute;
 	top: 50%;
 	right: 6px;
@@ -116,12 +128,12 @@ body {
 	transition: 0.3s;
 }
 
-.memory-card.active > .frond-card {
+.memory-card.memory-card_active > .frond-card {
 	transform: perspective(600px) rotateY(-180deg);
 	transition: 0.5s linear;
 }
 
-.memory-card.active > .back-card {
+.memory-card.memory-card_active > .back-card {
 	transform: perspective(600px) rotateY(0deg);
 	transition: 0.5s linear;
 }

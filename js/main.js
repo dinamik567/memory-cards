@@ -3,7 +3,6 @@ let cardsTable = document.querySelector('.memory-cards');
 
 
 
-
 //Еhis function is responsible for the event when clicking on the cards
 
 function addPlayCards(length) {
@@ -18,9 +17,6 @@ function addPlayCards(length) {
 				switch(counter) {
 					case 0:
 					case 1:
-						if (checkLengthArrayElement(arrayClosedCards, length * 2)) {
-							console.log('Vlados the best')
-						}
 						card.classList.add('memory-card_active');
 						arrayActiveCards.push(card);
 						++counter
@@ -44,7 +40,11 @@ function addPlayCards(length) {
 							for (let activeCard of activeCards) {
 								activeCard.classList.remove('memory-card_active');
 							}
-							
+							if (checkLengthArrayElement(arrayClosedCards, length)) {
+								arrayClosedCards = [];
+								arrayActiveCards = [];
+								removeMemoryCards()
+							}	
 							counter = 1;
 						});
 	
@@ -55,9 +55,12 @@ function addPlayCards(length) {
 	}
 }
 
+
 function removeMemoryCards() {
 	let memoryCards = document.querySelectorAll('.memory-card');
-	cardsTable.removeChild(memoryCards);
+	for (let i = memoryCards.length - 1; i >= 0; i--) {
+		memoryCards[i].remove();
+	}
 }
 
 
@@ -76,6 +79,7 @@ function waiteTime(seconds, func) {
 
 // This function check length of array elements
 function checkLengthArrayElement(arr, length) {
+	length *= 2;
 	return arr.length == length
 }
 
@@ -154,7 +158,7 @@ let arrayImagesCards = [
 
 controlButton.addEventListener('click', function() {
 	if (twelveInput.checked) {
-
+		removeMemoryCards()
 		let length = 6;
 		createCardTable(arrayImagesCards, length)
 		addPlayCards(length);
@@ -237,6 +241,8 @@ function createCard(name, id) {
 
 	cardsTable.appendChild(memoryCard);
 }
+
+//timer ==========================================================================================
 
 
 

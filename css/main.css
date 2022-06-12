@@ -16,6 +16,11 @@ body {
 	align-items: center;
 }
 
+.control-time {
+	font-weight: 600;
+	font-size: 18px;
+}
+
 .control-form {
 	display: flex;
 	justify-content: space-between;
@@ -121,6 +126,10 @@ body {
 	width: 100%;
 	max-width: 24%;
 	height: 150px;
+}
+
+.memory-card_width {
+	width: 19%;
 }
 
 .memory-card:hover {

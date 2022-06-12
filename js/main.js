@@ -1,6 +1,6 @@
 'use strict';
 let cardsTable = document.querySelector('.memory-cards');
-
+let timerId;
 
 
 //Еhis function is responsible for the event when clicking on the cards
@@ -10,9 +10,16 @@ function addPlayCards(length) {
 	let cards = document.querySelectorAll('.memory-card');
 	let arrayActiveCards = [];
 	let arrayClosedCards = [];
+	length *= 2;
+	let flag = false;
+
 
 	for (let card of cards) {
 		card.addEventListener('click', function clickCard() {
+			if (flag === false) {
+				startTime(length, arrayClosedCards);
+				flag = true;
+			}
 			if( !(this.classList.contains('memory-card_active')) ) {
 				switch(counter) {
 					case 0:
@@ -47,7 +54,6 @@ function addPlayCards(length) {
 							}	
 							counter = 1;
 						});
-	
 					break;
 				}
 			}
@@ -79,8 +85,7 @@ function waiteTime(seconds, func) {
 
 // This function check length of array elements
 function checkLengthArrayElement(arr, length) {
-	length *= 2;
-	return arr.length == length
+	return arr.length == length;
 }
 
 //control js//////////////////////////////////////////////////////
@@ -90,7 +95,7 @@ let controlButton = document.querySelector('.control-form__button');
 let twelveInput = document.querySelector('#twelve')
 let sixteenInput = document.querySelector('#sixteen');
 let twentyInput = document.querySelector('#twenty')
-
+let controlTime = document.querySelector('.control-time');	
 
 
 for (let controlInput of controlForms) {
@@ -158,20 +163,39 @@ let arrayImagesCards = [
 
 controlButton.addEventListener('click', function() {
 	if (twelveInput.checked) {
-		removeMemoryCards()
+		clearInterval(timerId);
+		changeValueDefault();
+		removeMemoryCards();
 		let length = 6;
-		createCardTable(arrayImagesCards, length)
+		createCardTable(getCloneArray(arrayImagesCards), length)
 		addPlayCards(length);
 	}
 
-	// if (twentyInput.checked) {
+	if (sixteenInput.checked) {
+		clearInterval(timerId);
+		changeValueDefault();
+		removeMemoryCards();
+		let length = 8;
+		createCardTable(getCloneArray(arrayImagesCards), length)
+		addPlayCards(length);
+	}
 
-	// }
+	if (twentyInput.checked) {
+		clearInterval(timerId);
+		changeValueDefault();
+		removeMemoryCards();
+		let length = 10;
+		createCardTable(getCloneArray(arrayImagesCards), length)
+		addPlayCards(length);
 
-	// if (twentyFourInput.checked) {
-
-	// }
+		let cards = document.querySelectorAll('.memory-card');
+		for (let card of cards) {
+			card.classList.add('memory-card_width');
+		}
+	}
 });
+
+
 
 //This function return a random digit in the given range
 function getRandom(min, max) {
@@ -244,5 +268,38 @@ function createCard(name, id) {
 
 //timer ==========================================================================================
 
+
+function startTime(length, arr) {
+	let counter = '0'
+	let i = '0';
+	let k = '0';
+	timerId = setInterval(function() {
+		k = Number(k) + 1;
+		if (length === arr.length) clearInterval(timerId);
+		controlTime.innerHTML = `${normaliseValueTime(counter)} : ${normaliseValueTime(i)}.${normaliseValueTime(k)}`;
+		if(i == 60) {
+			counter++;
+			i = '0';
+		}
+		if(k == 100) {
+			i++;
+			k = '0';
+		}
+	},10);
+}
+
+
+
+function normaliseValueTime(value) {
+	value = String(value);
+	if (value.length <= 1) {
+		value = '0' + value
+	}
+	return value; 
+}
+
+function changeValueDefault() {
+	controlTime.innerHTML = '00 : 00.00';
+}
 
 
